@@ -1,12 +1,11 @@
-
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { ministryofhomeaffairscategories, ministryofhomeaffairscomplaints } from "../data/complaints";
+import { ministryofrailwayscomplaints, ministryofrailwayscategories } from "../data/complaints";
 
-const MinistryofHomeAffairs = () => {
+const MinistryofRailways = () => {
     const { gov_id } = useParams();
-    const allcomplaints = ministryofhomeaffairscomplaints;
-    const allcategories = ministryofhomeaffairscategories;
+    const allcomplaints = ministryofrailwayscomplaints;
+    const allcategories = ministryofrailwayscategories;
 
     const [categories] = useState(allcategories);
     const [selectedCategory, setSelectedCategory] = useState("All");
@@ -22,14 +21,14 @@ const MinistryofHomeAffairs = () => {
     }, [selectedCategory, allcomplaints]);
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-red-50 to-red-100 p-6 md:p-12 flex flex-col items-center">
+        <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 p-6 md:p-12 flex flex-col items-center">
             {/* Header */}
             <div className="text-center flex flex-col items-center justify-center gap-4">
                 <h1 className="text-4xl md:text-5xl font-bold text-gray-800">
-                    Ministry of Home Affairs 🛂
+                    Ministry of Railways 🚆
                 </h1>
                 <p className="text-gray-600 max-md:text-sm text-lg mt-2 font-semibold">
-                    Ensuring national security, law enforcement, and public safety. The ministry oversees <b>border control, disaster management, cybersecurity, counterterrorism, and immigration</b> while maintaining <b>law and order</b> through police and intelligence agencies to protect citizens and uphold internal stability.
+                    Overseeing railway services, passenger safety, and operational efficiency to ensure smooth travel experiences for all citizens.
                 </p>
                 <p className="text-gray-500">Department ID: <b>{gov_id}</b></p>
             </div>
@@ -54,14 +53,14 @@ const MinistryofHomeAffairs = () => {
             {/* Complaints Section */}
             <div className="mt-12 w-full max-w-5xl">
                 <h2 className="text-2xl font-semibold text-gray-800">List of Complaints</h2>
-                <ul className="mt-4 flex flex-col gap-2 bg-white shadow-lg rounded-lg p-6 divide-y divide-gray-200">
+                <ul className="mt-4 bg-white flex flex-col gap-2 shadow-lg rounded-lg p-6 divide-y divide-gray-200">
                     {complaints.length > 0 ? complaints.map(complaint => (
-                        <li key={complaint.id} className="py-3  px-4 bg-gray-50  border-2 border-gray-200 flex justify-between items-center hover:bg-gray-100 transition rounded-md">
+                        <li key={complaint.id} className="py-3 px-4 bg-gray-50 border-2 border-gray-200 flex justify-between items-center hover:bg-gray-100 transition rounded-md">
                             <div className="flex max-md:text-sm justify-center items-center gap-3 capitalize font-semibold">
                                 <div>{complaint.category.split(" ").pop()}</div>
                                 <div>{complaint.complaint}</div>
                             </div>
-                            <div className="text-gray-600 text-xs">~👤{complaint.author}</div>
+                            <div className="text-gray-600 text-xs">~👤 {complaint.author}</div>
                         </li>
                     )) : (
                         <p className="text-gray-500 text-center py-4">No complaints found for this category.</p>
@@ -72,4 +71,4 @@ const MinistryofHomeAffairs = () => {
     );
 };
 
-export default MinistryofHomeAffairs;
+export default MinistryofRailways;

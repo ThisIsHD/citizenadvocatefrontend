@@ -515,3 +515,304 @@ export const ministryofwomenandchilddevelopmentcomplaints = [
     category: "Acid Attack Cases ☠️",
   },
 ];
+export const ministryofrailwayscategories = [
+  {
+    id: 1,
+    name: "Train Delays ⏳",
+    description: "Issues related to delays in train schedules and operations.",
+  },
+  {
+    id: 2,
+    name: "Ticket Issues 🎫",
+    description:
+      "Complaints about ticket booking, refunds, and availability.",
+  },
+  {
+    id: 3,
+    name: "Poor Hygiene 🧹",
+    description:
+      "Concerns about cleanliness in trains, stations, and restrooms.",
+  },
+  {
+    id: 4,
+    name: "Safety Concerns 🚨",
+    description:
+      "Issues related to passenger safety, theft, and accidents.",
+  },
+];
+
+export const ministryofrailwayscomplaints = [
+  {
+    id: 1,
+    complaint: "Trains are consistently delayed by over 2 hours.",
+    author: "Rahul Mehta",
+    category: "Train Delays ⏳",
+  },
+  {
+    id: 2,
+    complaint: "Unable to book tickets online due to website errors.",
+    author: "Priya Singh",
+    category: "Ticket Issues 🎫",
+  },
+  {
+    id: 3,
+    complaint: "The train toilets are extremely dirty and unusable.",
+    author: "Vikram Yadav",
+    category: "Poor Hygiene 🧹",
+  },
+  {
+    id: 4,
+    complaint: "Passengers feel unsafe due to lack of security personnel.",
+    author: "Anjali Sharma",
+    category: "Safety Concerns 🚨",
+  },
+  {
+    id: 5,
+    complaint: "Train delays are causing frequent missed connections.",
+    author: "Suresh Kumar",
+    category: "Train Delays ⏳",
+  },
+  {
+    id: 6,
+    complaint: "Refund for a canceled ticket has not been processed.",
+    author: "Neha Gupta",
+    category: "Ticket Issues 🎫",
+  },
+  {
+    id: 7,
+    complaint: "The station platforms are littered with garbage.",
+    author: "Rajesh Patel",
+    category: "Poor Hygiene 🧹",
+  },
+  {
+    id: 8,
+    complaint: "Theft of luggage is common in sleeper coaches.",
+    author: "Kavita Mishra",
+    category: "Safety Concerns 🚨",
+  },
+  {
+    id: 9,
+    complaint: "Trains are often rescheduled without prior notice.",
+    author: "Amit Singh",
+    category: "Train Delays ⏳",
+  },
+  {
+    id: 10,
+    complaint: "Online ticket booking portal is not user-friendly.",
+    author: "Divya Choudhary",
+    category: "Ticket Issues 🎫",
+  },
+  {
+    id: 11,
+    complaint: "The train compartments smell bad due to poor cleaning.",
+    author: "Ravi Shankar",
+    category: "Poor Hygiene 🧹",
+  },
+  {
+    id: 12,
+    complaint: "No emergency alarms are functioning in the train.",
+    author: "Sunita Devi",
+    category: "Safety Concerns 🚨",
+  },
+  {
+    id: 13,
+    complaint: "Frequent delays in long-distance trains.",
+    author: "Manoj Tiwari",
+    category: "Train Delays ⏳",
+  },
+  {
+    id: 14,
+    complaint: "Ticket counters are always overcrowded.",
+    author: "Pooja Verma",
+    category: "Ticket Issues 🎫",
+  },
+  {
+    id: 15,
+    complaint: "The station restrooms are in a terrible condition.",
+    author: "Anil Kumar",
+    category: "Poor Hygiene 🧹",
+  },
+  {
+    id: 16,
+    complaint: "Passengers are harassed by unauthorized vendors.",
+    author: "Shivani Roy",
+    category: "Safety Concerns 🚨",
+  },
+  {
+    id: 17,
+    complaint: "Trains are often canceled without proper notification.",
+    author: "Ramesh Yadav",
+    category: "Train Delays ⏳",
+  },
+  {
+    id: 18,
+    complaint: "Difficulty in getting confirmed tickets during peak seasons.",
+    author: "Kriti Singh",
+    category: "Ticket Issues 🎫",
+  },
+  {
+    id: 19,
+    complaint: "The train pantry serves unhygienic food.",
+    author: "Vikas Sharma",
+    category: "Poor Hygiene 🧹",
+  },
+  {
+    id: 20,
+    complaint: "No proper lighting at the station during night hours.",
+    author: "Nisha Patel",
+    category: "Safety Concerns 🚨",
+  },
+];
+export const ministryofroadtransportandhighwayscategories = [
+  {
+    id: 1,
+    name: "Poor Road Conditions 🛣️",
+    description:
+      "Issues related to potholes, damaged roads, and lack of proper maintenance.",
+  },
+  {
+    id: 2,
+    name: "Traffic Management 🚦",
+    description:
+      "Concerns regarding traffic congestion, signal failures, and improper road planning.",
+  },
+  {
+    id: 3,
+    name: "Transport Safety 🚗",
+    description:
+      "Complaints about reckless driving, road accidents, and inadequate pedestrian safety.",
+  },
+];
+
+export const ministryofroadtransportandhighwayscomplaints = [
+  {
+    id: 1,
+    complaint: "The main highway has deep potholes causing frequent accidents.",
+    author: "Ravi Verma",
+    category: "Poor Road Conditions 🛣️",
+  },
+  {
+    id: 2,
+    complaint: "Traffic signals are not working at major intersections.",
+    author: "Sneha Agarwal",
+    category: "Traffic Management 🚦",
+  },
+  {
+    id: 3,
+    complaint: "Lack of proper street lighting makes night driving unsafe.",
+    author: "Amit Das",
+    category: "Transport Safety 🚗",
+  },
+  {
+    id: 4,
+    complaint: "Road construction is incomplete, leading to major traffic jams.",
+    author: "Pooja Sharma",
+    category: "Poor Road Conditions 🛣️",
+  },
+  {
+    id: 5,
+    complaint: "Overloaded trucks are damaging roads and causing slow traffic.",
+    author: "Rajesh Kumar",
+    category: "Traffic Management 🚦",
+  },
+  {
+    id: 6,
+    complaint: "Lack of pedestrian crossings is making it dangerous to walk.",
+    author: "Meena Gupta",
+    category: "Transport Safety 🚗",
+  },
+];
+export const ministryofconsumeraffairsfoodandpublicdistributioncategories = [
+  {
+    id: 1,
+    name: "Ration Card Issues 📜",
+    description:
+      "Problems related to ration card application, renewal, or incorrect details.",
+  },
+  {
+    id: 2,
+    name: "PDS Complaints 🍚",
+    description:
+      "Concerns regarding the Public Distribution System (PDS), including supply shortages and distribution issues.",
+  },
+  {
+    id: 3,
+    name: "Food Quality 🍲",
+    description:
+      "Complaints about poor quality food being distributed under government schemes.",
+  },
+];
+export const ministryofconsumeraffairsfoodandpublicdistributioncomplaints = [
+  {
+    id: 1,
+    complaint: "My ration card application is pending for months without updates.",
+    author: "Sunil Sharma",
+    category: "Ration Card Issues 📜",
+  },
+  {
+    id: 2,
+    complaint: "The local PDS shop is not providing the allotted rice quota.",
+    author: "Meera Das",
+    category: "PDS Complaints 🍚",
+  },
+  {
+    id: 3,
+    complaint: "The wheat provided through PDS is of very poor quality.",
+    author: "Anil Gupta",
+    category: "Food Quality 🍲",
+  },
+  {
+    id: 4,
+    complaint: "My name was removed from the ration card without notice.",
+    author: "Kavita Patel",
+    category: "Ration Card Issues 📜",
+  },
+  {
+    id: 5,
+    complaint: "PDS shop owners demand extra money to provide rations.",
+    author: "Ramesh Yadav",
+    category: "PDS Complaints 🍚",
+  },
+  {
+    id: 6,
+    complaint: "Oil distributed in the ration shop has a foul smell.",
+    author: "Nisha Roy",
+    category: "Food Quality 🍲",
+  },
+  {
+    id: 7,
+    complaint: "I applied for a ration card correction, but it's still not updated.",
+    author: "Vikram Singh",
+    category: "Ration Card Issues 📜",
+  },
+  {
+    id: 8,
+    complaint: "The PDS shop remains closed on working days, causing inconvenience.",
+    author: "Rekha Verma",
+    category: "PDS Complaints 🍚",
+  },
+  {
+    id: 9,
+    complaint: "The pulses provided through the ration shop are often infested with insects.",
+    author: "Manoj Tiwari",
+    category: "Food Quality 🍲",
+  },
+  {
+    id: 10,
+    complaint: "Ration cardholders are not getting the full quota of subsidized items.",
+    author: "Pooja Sharma",
+    category: "Ration Card Issues 📜",
+  },
+  {
+    id: 11,
+    complaint: "PDS shopkeepers are selling subsidized grains in the black market.",
+    author: "Amit Kumar",
+    category: "PDS Complaints 🍚",
+  },
+  {
+    id: 12,
+    complaint: "The rice provided through the ration system is often stale and moldy.",
+    author: "Geeta Reddy",
+    category: "Food Quality 🍲",
+  },
+];
