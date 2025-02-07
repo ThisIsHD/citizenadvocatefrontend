@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useState } from 'react';
+import { useNavigate, Link } from 'react-router';
 
 function UserLogin() {
   const [username, setUsername] = useState('');
@@ -42,7 +42,7 @@ function UserLogin() {
           </button>
         </form>
         <p className="mt-4 text-center">
-          Don't have an account?{' '}
+          Don&apos;t have an account?{' '}
           <Link to="/signup" className="text-blue-500 hover:underline">
             Sign up
           </Link>
