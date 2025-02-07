@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";  // Import useNavigate hook
+import { useNavigate } from "react-router";  // Import useNavigate hook
 import Footer from './Footer'; // Import the Footer component
-import flagVideo from '../assets/tricolor.mp4';
+import flagVideo from '@/assets/flag.mp4';
 // import About from "../pages/About"; // Import About component
 
 export default function LandingPage() {
