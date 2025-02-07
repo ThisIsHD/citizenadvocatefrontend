@@ -43,7 +43,7 @@ function UserLogin() {
         </form>
         <p className="mt-4 text-center">
           Don&apos;t have an account?{' '}
-          <Link to="/signup" className="text-blue-500 hover:underline">
+          <Link to="/user/signup" className="text-blue-500 hover:underline">
             Sign up
           </Link>
         </p>
