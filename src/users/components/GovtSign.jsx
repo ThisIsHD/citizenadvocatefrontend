@@ -1,5 +1,5 @@
 // src/pages/GovtSign.js
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 function GovtSign() {
   const [departmentName, setDepartmentName] = useState('');

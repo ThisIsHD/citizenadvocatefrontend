@@ -1,12 +1,12 @@
 
 
-import React from 'react';
+// import React from 'react';
 
 const Footer = () => {
   return (
     <footer className="absolute bottom-0 w-full bg-black/70 text-white text-center py-4">
       <div className="space-y-4">
-        <p>&copy; 2025 Citizen's Advocate. All rights reserved.</p>
+        <p>&copy; 2025 Citizen&apos;s Advocate. All rights reserved.</p>
         
         {/* Logo */}
         <div className="flex justify-center">

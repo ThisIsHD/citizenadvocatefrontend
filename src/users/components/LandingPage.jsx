@@ -42,7 +42,7 @@ export default function LandingPage() {
       {/* Header Section */}
       <div className="relative z-20 text-white text-center px-6 md:px-20">
         <header className="absolute top-0 left-0 w-full py-6">
-          <h1 className="text-4xl font-bold">Citizen's Advocate</h1>
+          <h1 className="text-4xl font-bold">Citizen&apos;s Advocate</h1>
           <p className="text-xl mt-2">Empowering Citizens, Streamlining Solutions</p>
         </header>
       </div>
@@ -79,7 +79,7 @@ export default function LandingPage() {
             >
               &times; {/* Close button */}
             </button>
-            <About /> {/* This will render the content of About.jsx */}
+            {/* <About /> This will render the content of About.jsx */}
           </div>
         </div>
       )}

@@ -1,5 +1,5 @@
 // src/pages/UserSign.js
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 function UserSign() {
   const [name, setName] = useState('');

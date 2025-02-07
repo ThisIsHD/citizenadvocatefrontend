@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 
 function UserLogin() {
@@ -48,7 +48,7 @@ function UserLogin() {
           </button>
         </form>
         <p className="mt-4 text-center">
-          Doesn't have an account?{' '}
+          Doesn&apos;t have an account?{' '}
           <span
             onClick={handleSignUpClick}
             className="text-blue-500 cursor-pointer"
