@@ -1,75 +1,27 @@
 import React, { useState } from 'react';
 
 const CitizenDashboard = () => {
-  const [selectedMinistry, setSelectedMinistry] = useState('');
-  const [formData, setFormData] = useState({
-    fullName: '',
-    contactDetails: '',
-    pnrNumber: '',
-    trainNumber: '',
-    vehicleRegNumber: '',
-    drivingLicenseNumber: '',
-    productName: '',
-    purchaseDate: '',
-    retailerInfo: '',
-    hospitalName: '',
-    department: '',
-    doctorName: '',
-    incidentDate: '',
-    incidentLocation: '',
-    description: '',
-    supportingDocuments: null,
-  });
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [pnrNumber, setPnrNumber] = useState('');
+  const [description, setDescription] = useState('');
+  const [file, setFile] = useState(null);
+  const [complaints, setComplaints] = useState([
+    { id: 1, category: 'Education', status: 'Resolved', details: 'Complaint about school facilities.' },
+    { id: 2, category: 'Railways', status: 'Pending', details: 'Issue with train punctuality.' },
+  ]);
 
-  const ministries = [
-    'Ministry of Railways',
-    'Ministry of Road Transport and Highways',
-    'Ministry of Consumer Affairs, Food and Public Distribution',
-    'Ministry of Health and Family Welfare',
-    'Ministry of Home Affairs',
-    'Ministry of Women and Child Development',
-  ];
-
-  const handleMinistryChange = (e) => {
-    setSelectedMinistry(e.target.value);
-    // Reset formData when ministry changes
-    setFormData((prevData) => ({
-      ...prevData,
-      pnrNumber: '',
-      trainNumber: '',
-      vehicleRegNumber: '',
-      drivingLicenseNumber: '',
-      productName: '',
-      purchaseDate: '',
-      retailerInfo: '',
-      hospitalName: '',
-      department: '',
-      doctorName: '',
-      incidentDate: '',
-      incidentLocation: '',
-    }));
-  };
-
-  const handleInputChange = (e) => {
-    const { id, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [id]: value,
-    }));
+  const handleCategoryChange = (e) => {
+    setSelectedCategory(e.target.value);
   };
 
   const handleFileChange = (e) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      supportingDocuments: e.target.files[0],
-    }));
+    setFile(e.target.files[0]);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Implement form validation here
     // Handle form submission logic here
-    console.log('Complaint Submitted:', { selectedMinistry, ...formData });
+    console.log('Complaint Submitted:', { selectedCategory, pnrNumber, description, file });
   };
 
   return (
@@ -80,121 +32,130 @@ const CitizenDashboard = () => {
       <section className="mb-8">
         <h2 className="text-2xl font-semibold mb-4">File a New Complaint</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Select Ministry */}
           <div>
-            <label htmlFor="ministry" className="block text-lg font-medium">Select Ministry</label>
+            <label htmlFor="category" className="block text-lg font-medium">Complaint Category</label>
             <select
-              id="ministry"
-              value={selectedMinistry}
-              onChange={handleMinistryChange}
+              id="category"
+              value={selectedCategory}
+              onChange={handleCategoryChange}
               className="w-full p-2 border border-gray-300 rounded mt-1"
             >
-              <option value="">Select Ministry</option>
-              {ministries.map((ministry) => (
-                <option key={ministry} value={ministry}>{ministry}</option>
-              ))}
+              <option value="">Select Category</option>
+              <option value="Education">Education</option>
+              <option value="Railways">Railways</option>
+              {/* Add more categories as needed */}
             </select>
           </div>
 
-          {/* Common Fields */}
+          {selectedCategory === 'Railways' && (
+            <div>
+              <label htmlFor="pnrNumber" className="block text-lg font-medium">PNR Number</label>
+              <input
+                type="text"
+                id="pnrNumber"
+                value={pnrNumber}
+                onChange={(e) => setPnrNumber(e.target.value)}
+                className="w-full p-2 border border-gray-300 rounded mt-1"
+                placeholder="Enter PNR Number"
+              />
+            </div>
+          )}
+
           <div>
-            <label htmlFor="fullName" className="block text-lg font-medium">Full Name</label>
-            <input
-              type="text"
-              id="fullName"
-              value={formData.fullName}
-              onChange={handleInputChange}
+            <label htmlFor="description" className="block text-lg font-medium">Description</label>
+            <textarea
+              id="description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
               className="w-full p-2 border border-gray-300 rounded mt-1"
-              placeholder="Enter your full name"
+              placeholder="Describe your complaint"
             />
           </div>
 
           <div>
-            <label htmlFor="contactDetails" className="block text-lg font-medium">Contact Details</label>
+            <label htmlFor="file" className="block text-lg font-medium">Upload Supporting Documents</label>
             <input
-              type="text"
-              id="contactDetails"
-              value={formData.contactDetails}
-              onChange={handleInputChange}
+              type="file"
+              id="file"
+              onChange={handleFileChange}
               className="w-full p-2 border border-gray-300 rounded mt-1"
-              placeholder="Enter your contact details"
             />
           </div>
 
-          {/* Ministry-Specific Fields */}
-          {selectedMinistry === 'Ministry of Railways' && (
-            <>
-              <div>
-                <label htmlFor="pnrNumber" className="block text-lg font-medium">PNR Number</label>
-                <input
-                  type="text"
-                  id="pnrNumber"
-                  value={formData.pnrNumber}
-                  onChange={handleInputChange}
-                  className="w-full p-2 border border-gray-300 rounded mt-1"
-                  placeholder="Enter PNR Number"
-                />
-              </div>
-              <div>
-                <label htmlFor="trainNumber" className="block text-lg font-medium">Train Number</label>
-                <input
-                  type="text"
-                  id="trainNumber"
-                  value={formData.trainNumber}
-                  onChange={handleInputChange}
-                  className="w-full p-2 border border-gray-300 rounded mt-1"
-                  placeholder="Enter Train Number"
-                />
-              </div>
-            </>
-          )}
+          <button
+            type="submit"
+            className="w-full py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          >
+            Submit Complaint
+          </button>
+        </form>
+      </section>
 
-          {selectedMinistry === 'Ministry of Road Transport and Highways' && (
-            <>
-              <div>
-                <label htmlFor="vehicleRegNumber" className="block text-lg font-medium">Vehicle Registration Number</label>
-                <input
-                  type="text"
-                  id="vehicleRegNumber"
-                  value={formData.vehicleRegNumber}
-                  onChange={handleInputChange}
-                  className="w-full p-2 border border-gray-300 rounded mt-1"
-                  placeholder="Enter Vehicle Registration Number"
-                />
-              </div>
-              <div>
-                <label htmlFor="drivingLicenseNumber" className="block text-lg font-medium">Driving License Number</label>
-                <input
-                  type="text"
-                  id="drivingLicenseNumber"
-                  value={formData.drivingLicenseNumber}
-                  onChange={handleInputChange}
-                  className="w-full p-2 border border-gray-300 rounded mt-1"
-                  placeholder="Enter Driving License Number"
-                />
-              </div>
-            </>
-          )}
+      {/* View Existing Complaints */}
+      <section>
+        <h2 className="text-2xl font-semibold mb-4">Your Complaints</h2>
+        <div className="overflow-x-auto">
+          <table className="min-w-full table-auto">
+            <thead>
+              <tr>
+                <th className="px-4 py-2 border">ID</th>
+                <th className="px-4 py-2 border">Category</th>
+                <th className="px-4 py-2 border">Status</th>
+                <th className="px-4 py-2 border">Details</th>
+                <th className="px-4 py-2 border">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {complaints.map((complaint) => (
+                <tr key={complaint.id}>
+                  <td className="px-4 py-2 border">{complaint.id}</td>
+                  <td className="px-4 py-2 border">{complaint.category}</td>
+                  <td className="px-4 py-2 border">{complaint.status}</td>
+                  <td className="px-4 py-2 border">{complaint.details}</td>
+                  <td className="px-4 py-2 border">
+                    <button className="text-blue-500 hover:underline">View</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
 
-          {selectedMinistry === 'Ministry of Consumer Affairs, Food and Public Distribution' && (
-            <>
-              <div>
-                <label htmlFor="productName" className="block text-lg font-medium">Product/Service Name</label>
-                <input
-                  type="text"
-                  id="productName"
-                  value={formData.productName}
-                  onChange={handleInputChange}
-                  className="w-full p-2 border border-gray-300 rounded mt-1"
-                  placeholder="Enter Product or Service Name"
-                />
-              </div>
-              <div>
-                <label htmlFor="purchaseDate" className="block text-lg font-medium">Purchase Date</label>
-                <input
-                  type="date"
-                  id="purchaseDate"
-                  value={formData.purchaseDate}
-                  onChange={handle
-::contentReference[oaicite:0]{index=0}
+      {/* Repost Similar Complaint */}
+      <section className="mt-8">
+        <h2 className="text-2xl font-semibold mb-4">Repost Similar Complaint</h2>
+        <form className="space-y-4">
+          <div>
+            <label htmlFor="trainNumber" className="block text-lg font-medium">Train Number</label>
+            <input
+              type="text"
+              id="trainNumber"
+              className="w-full p-2 border border-gray-300 rounded mt-1"
+              placeholder="Enter Train Number"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="complaintDate" className="block text-lg font-medium">Date of Incident</label>
+            <input
+              type="date"
+              id="complaintDate"
+              className="w-full p-2 border border-gray-300 rounded mt-1"
+            />
+          </div>
+
+          <button
+            type="button"
+            className="w-full py-2 bg-green-500 text-white rounded hover:bg-green-600"
+          >
+            Repost Complaint
+          </button>
+        </form>
+      </section>
+    </div>
+  );
+};
+
+export default CitizenDashboard;
  
