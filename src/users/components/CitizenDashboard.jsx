@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const CitizenDashboard = () => {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [pnrNumber, setPnrNumber] = useState('');
   const [description, setDescription] = useState('');
   const [file, setFile] = useState(null);
+  // eslint-disable-next-line no-unused-vars
   const [complaints, setComplaints] = useState([
     { id: 1, category: 'Education', status: 'Resolved', details: 'Complaint about school facilities.' },
     { id: 2, category: 'Railways', status: 'Pending', details: 'Issue with train punctuality.' },
