@@ -13,6 +13,7 @@ import UserLogin from './users/components/UserLogin'
 import UserSign from './users/components/UserSign'
 import GovtLogin from './users/components/GovtLogin'
 import GovtSign from './users/components/GovtSign'
+import CitizenDashboard from './users/components/CitizenDashboard'
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
         <Route path="/user/signup" element={<UserSign />} />
         <Route path="/govt/login" element={<GovtLogin />} />
         <Route path="/govt/signup" element={<GovtSign />} />
+        <Route path="/user/citizendashboard" element={<CitizenDashboard />} />
         {/* Government side routes */}
         <Route path="/MinistryofHealthandFamilyWelfare/:gov_id" element={<MinistryofHealthandFamilyWelfare />} />
         <Route path="/MinistryofHomeAffairs/:gov_id" element={<MinistryofHomeAffairs />} />

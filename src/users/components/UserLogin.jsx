@@ -1,25 +1,19 @@
-import { useState } from 'react';
-import { Navigate } from 'react-router';
+import React, { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 
 function UserLogin() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [redirectToSignUp, setRedirectToSignUp] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Implement authentication logic here
     console.log('Username:', username);
     console.log('Password:', password);
+    // If authentication is successful, navigate to CitizenDashboard
+    navigate('/user/citizendashboard');
   };
-
-  const handleSignUpClick = () => {
-    setRedirectToSignUp(true);
-  };
-
-  if (redirectToSignUp) {
-    return <Navigate to="/user/signup" />;
-  }
 
   return (
     <div className="flex items-center justify-center h-screen bg-gray-100">
@@ -48,13 +42,10 @@ function UserLogin() {
           </button>
         </form>
         <p className="mt-4 text-center">
-          Doesn&apos;t have an account?{' '}
-          <span
-            onClick={handleSignUpClick}
-            className="text-blue-500 cursor-pointer"
-          >
+          Don't have an account?{' '}
+          <Link to="/signup" className="text-blue-500 hover:underline">
             Sign up
-          </span>
+          </Link>
         </p>
       </div>
     </div>
@@ -62,3 +53,4 @@ function UserLogin() {
 }
 
 export default UserLogin;
+
