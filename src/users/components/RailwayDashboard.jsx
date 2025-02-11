@@ -148,6 +148,30 @@ function RailwaysDashboard() {
           </div>
         )}
 
+         {/* Choose Date and Time */}
+         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+          <div>
+            <label className="block text-lg font-medium">Choose Date</label>
+            <input
+              type="date"
+              name="date"
+              value={complaint.date}
+              onChange={handleInputChange}
+              className="w-full p-2 border border-gray-300 rounded-lg"
+            />
+          </div>
+          <div>
+            <label className="block text-lg font-medium">Choose Time</label>
+            <input
+              type="time"
+              name="time"
+              value={complaint.time}
+              onChange={handleInputChange}
+              className="w-full p-2 border border-gray-300 rounded-lg"
+            />
+          </div>
+        </div>
+
         {/* Complaint Description */}
         <div className="mt-6">
           <label className="block text-lg font-medium">Complaint Description</label>
