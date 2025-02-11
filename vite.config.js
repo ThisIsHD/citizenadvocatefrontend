@@ -12,3 +12,4 @@ export default defineConfig({
   },
   plugins: [tailwindcss(), react()],
 });
+

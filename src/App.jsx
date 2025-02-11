@@ -8,12 +8,14 @@ import MinistryofWomenandChildDevelopment from './government/pages/MinistryofWom
 import MinistryofConsumerAffairsFoodandPublicDistribution from './government/pages/MinistryofConsumerAffairsFoodandPublicDistribution'
 import MinistryofRailways from './government/pages/MinistryofRailways'
 import MinistryofRoadTransportandHighways from './government/pages/MinistryofRoadTransportandHighways'
-import LandingPage from './users/components/LandingPage'
+// import LandingPage from './users/components/LandingPage'
 import UserLogin from './users/components/UserLogin'
 import UserSign from './users/components/UserSign'
 import GovtLogin from './users/components/GovtLogin'
 import GovtSign from './users/components/GovtSign'
 import CitizenDashboard from './users/components/CitizenDashboard'
+import SelectCategory from './users/components/SelectCategory'
+import RailwayDashboard from './users/components/RailwayDashboard'
 
 function App() {
 
@@ -21,12 +23,15 @@ function App() {
     <BrowserRouter>
       <Routes>
         {/* User side routes */}
-        <Route path="/" element={<LandingPage />} />
+        {/* <Route path="/" element={<LandingPage />} /> */}
+        <Route path="/" element={<RailwayDashboard />} />
         <Route path="/user/login" element={<UserLogin />} />
         <Route path="/user/signup" element={<UserSign />} />
         <Route path="/govt/login" element={<GovtLogin />} />
         <Route path="/govt/signup" element={<GovtSign />} />
         <Route path="/user/citizendashboard" element={<CitizenDashboard />} />
+        <Route path="/user/selectcategory" element={<SelectCategory />} />
+        <Route path="/user/railwaydashboard" element={<RailwayDashboard />} />
         {/* Government side routes */}
         <Route path="/MinistryofHealthandFamilyWelfare/:gov_id" element={<MinistryofHealthandFamilyWelfare />} />
         <Route path="/MinistryofHomeAffairs/:gov_id" element={<MinistryofHomeAffairs />} />
