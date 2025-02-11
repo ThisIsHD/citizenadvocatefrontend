@@ -160,16 +160,6 @@ function RailwaysDashboard() {
               className="w-full p-2 border border-gray-300 rounded-lg"
             />
           </div>
-          <div>
-            <label className="block text-lg font-medium">Choose Time</label>
-            <input
-              type="time"
-              name="time"
-              value={complaint.time}
-              onChange={handleInputChange}
-              className="w-full p-2 border border-gray-300 rounded-lg"
-            />
-          </div>
         </div>
 
         {/* Complaint Description */}

@@ -12,7 +12,7 @@ function UserLogin() {
     console.log('Username:', username);
     console.log('Password:', password);
     // If authentication is successful, navigate to CitizenDashboard
-    navigate('/user/citizendashboard');
+    navigate('/SelectCategory');
   };
 
   return (
