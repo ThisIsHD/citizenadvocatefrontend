@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import { useNavigate } from "react-router-dom";
 import educationImage from "@/assets/education.png";
 import railwaysImage from "@/assets/railway.png";

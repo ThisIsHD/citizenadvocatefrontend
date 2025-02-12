@@ -2,14 +2,14 @@ import { useState } from 'react';
 import { useNavigate, Link } from 'react-router';
 
 function UserLogin() {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // Implement authentication logic here
-    console.log('Username:', username);
+    console.log('Email:',email );
     console.log('Password:', password);
     // If authentication is successful, navigate to CitizenDashboard
     navigate('/SelectCategory');
@@ -22,9 +22,9 @@ function UserLogin() {
         <form onSubmit={handleSubmit}>
           <input
             type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className="w-full p-2 mb-4 border border-gray-300 rounded"
           />
           <input
