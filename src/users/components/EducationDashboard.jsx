@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 
 function EducationDashboard() {
@@ -155,16 +155,6 @@ function EducationDashboard() {
               type="date"
               name="date"
               value={complaint.date}
-              onChange={handleInputChange}
-              className="w-full p-2 border border-gray-300 rounded-lg"
-            />
-          </div>
-          <div>
-            <label className="block text-lg font-medium">Choose Time</label>
-            <input
-              type="time"
-              name="time"
-              value={complaint.time}
               onChange={handleInputChange}
               className="w-full p-2 border border-gray-300 rounded-lg"
             />
