@@ -2,30 +2,52 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 
 function WomenChildDashboard() {
-  const issueData = {
-    101: "Women Harassment",
-    102: "Child Abuse",
-    103: "Domestic Violence",
-    104: "Dowry Cases",
-    105: "Human Trafficking",
+  const serviceData = {
+    101: "Delhi Women's Commission",
+    202: "Mumbai Women's Support Center",
+    303: "Bangalore Women's Helpline",
+    404: "Chennai Protection Services",
+    505: "Kolkata Women's Welfare Unit",
+    606: "Hyderabad Support Services",
+    707: "Pune Women's Aid Center",
+    808: "Jaipur Women's Assistance",
+    909: "Lucknow Support Network",
   };
+
+  const complaintCategories = [
+    "Domestic Violence & Abuse Complaints",
+    "Child Labor & Exploitation",
+    "Sexual Harassment & Workplace Safety",
+    "Maternity & Childcare Facilities Issues",
+    "Child Adoption & Foster Care Issues",
+    "Women's Education & Employment Complaints",
+    "Dowry & Forced Marriage Cases",
+    "Cyber Harassment & Online Safety",
+    "Malnutrition & Welfare Program Complaints",
+    "Women's Shelter & Rehabilitation Complaints"
+  ];
 
   const sampleComplaints = {
     101: [
-      { description: "Harassment in workplace.", status: "Pending" },
-      { description: "Stalking incident reported.", status: "Resolved" },
+      { description: "Need immediate assistance with shelter access.", status: "Pending" },
+      { description: "Seeking counseling services support.", status: "Resolved" },
     ],
-    102: [
-      { description: "Child labor observed in factory.", status: "Pending" },
-      { description: "Physical abuse in foster home.", status: "Resolved" },
+    202: [
+      { description: "Request for legal aid services.", status: "Pending" },
+      { description: "Follow-up on support program application.", status: "Resolved" },
+    ],
+    303: [
+      { description: "Workplace safety concern report.", status: "Pending" },
+      { description: "Education scholarship inquiry.", status: "Resolved" },
     ],
   };
 
   const [complaint, setComplaint] = useState({
-    issueCode: "",
-    issueType: "",
-    description: "",
+    serviceNumber: "",
+    serviceName: "",
+    category: "",
     date: "",
+    description: "",
     document: null,
   });
 
@@ -35,9 +57,9 @@ function WomenChildDashboard() {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
-    if (name === "issueCode") {
-      const issueType = issueData[value] || "";
-      setComplaint({ ...complaint, issueCode: value, issueType });
+    if (name === "serviceNumber") {
+      const serviceName = serviceData[value] || "";
+      setComplaint({ ...complaint, serviceNumber: value, serviceName });
 
       if (sampleComplaints[value]) {
         setFilteredComplaints(sampleComplaints[value]);
@@ -65,7 +87,7 @@ function WomenChildDashboard() {
   return (
     <div className="min-h-screen w-full flex flex-col items-center bg-gray-100">
       <motion.h1 className="text-4xl font-extrabold text-purple-800 text-center mt-6">
-        Ministry of Women & Child Development Dashboard
+        Women and Child Development Dashboard
       </motion.h1>
 
       <motion.div
@@ -88,22 +110,22 @@ function WomenChildDashboard() {
         <h2 className="text-xl font-bold text-gray-800">File a New Complaint</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label className="block text-lg font-medium">Issue Code</label>
+            <label className="block text-lg font-medium">Support Service Number</label>
             <input
               type="text"
-              name="issueCode"
-              value={complaint.issueCode}
+              name="serviceNumber"
+              value={complaint.serviceNumber}
               onChange={handleInputChange}
               className="w-full p-2 border border-gray-300 rounded-lg"
-              placeholder="Enter Issue Code"
+              placeholder="Enter Service Number"
             />
           </div>
           <div>
-            <label className="block text-lg font-medium">Issue Type</label>
+            <label className="block text-lg font-medium">Support Service Name</label>
             <input
               type="text"
-              name="issueType"
-              value={complaint.issueType}
+              name="serviceName"
+              value={complaint.serviceName}
               className="w-full p-2 border border-gray-300 rounded-lg bg-gray-100"
               readOnly
             />
@@ -112,7 +134,7 @@ function WomenChildDashboard() {
 
         {filteredComplaints.length > 0 && (
           <div className="bg-gray-50 p-4 rounded-lg shadow-md w-full">
-            <h3 className="text-lg font-bold mb-4">Existing Complaints for {complaint.issueType}</h3>
+            <h3 className="text-lg font-bold mb-4">Previous Cases for {complaint.serviceName}</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {filteredComplaints.map((comp, index) => (
                 <motion.div
@@ -136,9 +158,26 @@ function WomenChildDashboard() {
           </div>
         )}
 
+        <div className="mt-4">
+          <label className="block text-lg font-medium">Select Case Category</label>
+          <select
+            name="category"
+            value={complaint.category}
+            onChange={handleInputChange}
+            className="w-full p-2 border border-gray-300 rounded-lg"
+          >
+            <option value="">Select a category</option>
+            {complaintCategories.map((category, index) => (
+              <option key={index} value={category}>
+                {category}
+              </option>
+            ))}
+          </select>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
           <div>
-            <label className="block text-lg font-medium">Choose Date</label>
+            <label className="block text-lg font-medium">Date of Incident</label>
             <input
               type="date"
               name="date"
@@ -150,19 +189,19 @@ function WomenChildDashboard() {
         </div>
 
         <div className="mt-6">
-          <label className="block text-lg font-medium">Complaint Description</label>
+          <label className="block text-lg font-medium">Case Description</label>
           <textarea
             name="description"
             value={complaint.description}
             onChange={handleInputChange}
             className="w-full p-2 border border-gray-300 rounded-lg"
-            placeholder="Describe your complaint"
+            placeholder="Please provide details of your case"
             rows="3"
           />
         </div>
 
         <div className="mt-4">
-          <label className="block text-lg font-medium">Upload Supporting Document</label>
+          <label className="block text-lg font-medium">Upload Supporting Documents</label>
           <input type="file" className="w-full p-2 border border-gray-300 rounded-lg" />
         </div>
 
@@ -179,3 +218,4 @@ function WomenChildDashboard() {
 }
 
 export default WomenChildDashboard;
+

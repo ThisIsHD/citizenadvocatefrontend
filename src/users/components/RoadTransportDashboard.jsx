@@ -14,6 +14,20 @@ function RoadTransportDashboard() {
     909: "Lucknow Metro",
   };
 
+  const complaintCategories = [
+    "Road & Highway Conditions (Potholes, Damage)",
+    "Traffic Congestion & Management",
+    "Public Transport Service Issues",
+    "Auto & Taxi Fare Complaints",
+    "Drunk & Rash Driving Reports",
+    "Parking Issues & Violations",
+    "Accident & Emergency Response Delays",
+    "License & Permit Issues",
+    "Pollution & Emission Violations",
+    "Road Signage & Traffic Light Malfunctions",
+    "Corruption & Bribery in Transport Department"
+  ];
+
   const sampleComplaints = {
     101: [
       { description: "Bus did not arrive on time.", status: "Pending" },
@@ -32,6 +46,7 @@ function RoadTransportDashboard() {
   const [complaint, setComplaint] = useState({
     transportNumber: "",
     transportName: "",
+    category: "",
     date: "",
     description: "",
     document: null,
@@ -143,6 +158,24 @@ function RoadTransportDashboard() {
             </div>
           </div>
         )}
+
+        {/* Complaint Category Selection */}
+        <div className="mt-4">
+          <label className="block text-lg font-medium">Select Complaint Category</label>
+          <select
+            name="category"
+            value={complaint.category}
+            onChange={handleInputChange}
+            className="w-full p-2 border border-gray-300 rounded-lg"
+          >
+            <option value="">Select a category</option>
+            {complaintCategories.map((category, index) => (
+              <option key={index} value={category}>
+                {category}
+              </option>
+            ))}
+          </select>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
           <div>

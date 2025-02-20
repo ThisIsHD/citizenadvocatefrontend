@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 
 function ConsumerAffairsDashboard() {
@@ -13,6 +13,20 @@ function ConsumerAffairsDashboard() {
     808: "STU Laptop",
     909: "VWX Smartwatch",
   };
+
+  const categories = [
+    "Defective or Fake Products",
+    "Online Shopping Scams",
+    "Delayed or Non-Delivery of Orders",
+    "Misleading Advertisements",
+    "Poor Customer Service & Refund Issues",
+    "Price Hike & Overcharging",
+    "Food Adulteration & Expired Products",
+    "Warranty & Guarantee Violations",
+    "Fraudulent Business Practices",
+    "Electricity & Water Bill Complaints",
+    "Telecom & Internet Service Issues"
+  ];
 
   const sampleComplaints = {
     101: [
@@ -32,6 +46,7 @@ function ConsumerAffairsDashboard() {
   const [complaint, setComplaint] = useState({
     productId: "",
     productName: "",
+    category: "",
     purchaseDate: "",
     description: "",
     document: null,
@@ -144,6 +159,23 @@ function ConsumerAffairsDashboard() {
           </div>
         )}
 
+        {/* Category Selection - New Addition */}
+        <div className="mt-4">
+          <label className="block text-lg font-medium">Select Category</label>
+          <select
+            name="category"
+            value={complaint.category}
+            onChange={handleInputChange}
+            className="w-full p-2 border border-gray-300 rounded-lg"
+          >
+            <option value="">Select a category</option>
+            {categories.map((category, index) => (
+              <option key={index} value={category}>
+                {category}
+              </option>
+            ))}
+          </select>
+        </div>
         
         {/* Choose Date */}
         <div className="mt-4">

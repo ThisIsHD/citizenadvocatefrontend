@@ -1,37 +1,52 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-function EducationDashboard() {
-  const institutionData = {
-    101: "Kolkata University",
-    202: "Jadavpur University",
-    303: "Presidency College",
-    404: "IIT Kharagpur",
-    505: "NIT Durgapur",
-    606: "St. Xavier’s College",
-    707: "IIEST Shibpur",
-    808: "Techno India University",
-    909: "Amity University Kolkata",
+function HealthFamilyDashboard() {
+  const hospitalData = {
+    111: "AIIMS Delhi",
+    222: "Apollo Hospitals Chennai",
+    333: "Fortis Hospital Mumbai",
+    444: "Narayana Health Bangalore",
+    555: "CMC Vellore",
+    666: "Tata Memorial Hospital",
+    777: "Manipal Hospitals Hyderabad",
+    888: "Kokilaben Dhirubhai Ambani Hospital",
+    999: "Max Super Speciality Hospital",
   };
 
+  const categories = [
+    "Hospital & Clinic Negligence",
+    "Unavailability of Medicines & Vaccines",
+    "Ambulance & Emergency Service Delays",
+    "Overcharging by Private Hospitals",
+    "Blood Bank & Organ Donation Issues",
+    "Health Insurance Claims & Fraud",
+    "Mental Health & Counselling Services",
+    "Malpractice & Misconduct by Doctors",
+    "Sanitation & Hygiene in Public Hospitals",
+    "Medical Test & Lab Report Delays",
+    "Lack of Facilities for Disabled Patients"
+  ];
+
   const sampleComplaints = {
-    101: [
-      { description: "Faculty shortage affecting classes.", status: "Pending" },
-      { description: "Library resources are outdated.", status: "Resolved" },
+    111: [
+      { description: "Long waiting hours for OPD.", status: "Pending" },
+      { description: "Staff behavior was unprofessional.", status: "Resolved" },
     ],
-    202: [
-      { description: "Lack of proper lab equipment.", status: "Pending" },
-      { description: "Delay in semester results publication.", status: "Resolved" },
+    222: [
+      { description: "High medical charges for basic treatments.", status: "Pending" },
+      { description: "Cleanliness issues in the wards.", status: "Resolved" },
     ],
-    303: [
-      { description: "Classrooms are not well maintained.", status: "Pending" },
-      { description: "Issues with hostel food quality.", status: "Resolved" },
+    333: [
+      { description: "Shortage of essential medicines.", status: "Pending" },
+      { description: "Emergency response time was slow.", status: "Resolved" },
     ],
   };
 
   const [complaint, setComplaint] = useState({
-    institutionId: "",
-    institutionName: "",
+    hospitalId: "",
+    hospitalName: "",
+    category: "",
     date: "",
     description: "",
     document: null,
@@ -43,9 +58,9 @@ function EducationDashboard() {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
-    if (name === "institutionId") {
-      const institutionName = institutionData[value] || "";
-      setComplaint({ ...complaint, institutionId: value, institutionName });
+    if (name === "hospitalId") {
+      const hospitalName = hospitalData[value] || "";
+      setComplaint({ ...complaint, hospitalId: value, hospitalName });
 
       if (sampleComplaints[value]) {
         setFilteredComplaints(sampleComplaints[value]);
@@ -73,7 +88,7 @@ function EducationDashboard() {
   return (
     <div className="min-h-screen w-full flex flex-col items-center bg-gray-100">
       <motion.h1 className="text-4xl font-extrabold text-blue-800 text-center mt-6">
-        Ministry of Education Dashboard
+        Ministry of Health and Family Dashboard
       </motion.h1>
 
       <motion.div
@@ -82,7 +97,6 @@ function EducationDashboard() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        {/* Success Message */}
         {successMessage && (
           <motion.div
             className="w-full text-center text-lg font-semibold text-green-700 bg-green-100 py-2 rounded-lg"
@@ -94,36 +108,34 @@ function EducationDashboard() {
           </motion.div>
         )}
 
-        {/* Complaint Form */}
         <h2 className="text-xl font-bold text-gray-800">File a New Complaint</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label className="block text-lg font-medium">Institution ID</label>
+            <label className="block text-lg font-medium">Hospital ID</label>
             <input
               type="text"
-              name="institutionId"
-              value={complaint.institutionId}
+              name="hospitalId"
+              value={complaint.hospitalId}
               onChange={handleInputChange}
               className="w-full p-2 border border-gray-300 rounded-lg"
-              placeholder="Enter Institution ID"
+              placeholder="Enter Hospital ID"
             />
           </div>
           <div>
-            <label className="block text-lg font-medium">Institution Name</label>
+            <label className="block text-lg font-medium">Hospital Name</label>
             <input
               type="text"
-              name="institutionName"
-              value={complaint.institutionName}
+              name="hospitalName"
+              value={complaint.hospitalName}
               className="w-full p-2 border border-gray-300 rounded-lg bg-gray-100"
               readOnly
             />
           </div>
         </div>
 
-        {/* Display Existing Complaints for Selected Institution */}
         {filteredComplaints.length > 0 && (
           <div className="bg-gray-50 p-4 rounded-lg shadow-md w-full">
-            <h3 className="text-lg font-bold mb-4">Existing Complaints for {complaint.institutionName}</h3>
+            <h3 className="text-lg font-bold mb-4">Existing Complaints for {complaint.hospitalName}</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {filteredComplaints.map((comp, index) => (
                 <motion.div
@@ -147,21 +159,34 @@ function EducationDashboard() {
           </div>
         )}
 
-         {/* Choose Date and Time */}
-         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
-          <div>
-            <label className="block text-lg font-medium">Choose Date</label>
-            <input
-              type="date"
-              name="date"
-              value={complaint.date}
-              onChange={handleInputChange}
-              className="w-full p-2 border border-gray-300 rounded-lg"
-            />
-          </div>
+        <div className="mt-4">
+          <label className="block text-lg font-medium">Select Category</label>
+          <select
+            name="category"
+            value={complaint.category}
+            onChange={handleInputChange}
+            className="w-full p-2 border border-gray-300 rounded-lg"
+          >
+            <option value="">Select a category</option>
+            {categories.map((category, index) => (
+              <option key={index} value={category}>
+                {category}
+              </option>
+            ))}
+          </select>
         </div>
 
-        {/* Complaint Description */}
+        <div className="mt-4">
+          <label className="block text-lg font-medium">Choose Date</label>
+          <input
+            type="date"
+            name="date"
+            value={complaint.date}
+            onChange={handleInputChange}
+            className="w-full p-2 border border-gray-300 rounded-lg"
+          />
+        </div>
+
         <div className="mt-6">
           <label className="block text-lg font-medium">Complaint Description</label>
           <textarea
@@ -174,13 +199,15 @@ function EducationDashboard() {
           />
         </div>
 
-        {/* Upload Document */}
         <div className="mt-4">
           <label className="block text-lg font-medium">Upload Supporting Document</label>
-          <input type="file" className="w-full p-2 border border-gray-300 rounded-lg" />
+          <input 
+            type="file" 
+            className="w-full p-2 border border-gray-300 rounded-lg"
+            onChange={(e) => setComplaint({ ...complaint, document: e.target.files[0] })}
+          />
         </div>
 
-        {/* Submit Complaint */}
         <button
           type="submit"
           onClick={handleSubmit}
@@ -193,4 +220,4 @@ function EducationDashboard() {
   );
 }
 
-export default EducationDashboard;
+export default HealthFamilyDashboard;

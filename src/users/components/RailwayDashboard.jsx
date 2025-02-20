@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 
 function RailwaysDashboard() {
@@ -13,6 +13,22 @@ function RailwaysDashboard() {
     888: "Hyderabad-Chennai Charminar Express",
     999: "Delhi-Mumbai Rajdhani Express",
   };
+
+  const complaintCategories = [
+    "Train Delay & Rescheduling",
+    "Train Cleanliness & Hygiene",
+    "Food Quality & Availability",
+    "Ticket Booking & Cancellation Issues",
+    "Refund & Payment Problems",
+    "Coach & Seat Allocation Issues",
+    "Security & Theft Complaints",
+    "Station Facilities (Washrooms, Waiting Rooms, Accessibility)",
+    "Unauthorized Vendors & Hawkers",
+    "Overcrowding & Passenger Safety",
+    "Lost & Found Services",
+    "AC & Fan Malfunctioning",
+    "TTE & Railway Staff Misconduct"
+  ];
 
   const sampleComplaints = {
     111: [
@@ -33,6 +49,7 @@ function RailwaysDashboard() {
     trainNumber: "",
     trainName: "",
     pnr: "",
+    category: "",
     date: "",
     description: "",
     document: null,
@@ -148,8 +165,26 @@ function RailwaysDashboard() {
           </div>
         )}
 
-         {/* Choose Date and Time */}
-         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+        {/* Complaint Category Selection */}
+        <div className="mt-4">
+          <label className="block text-lg font-medium">Select Complaint Category</label>
+          <select
+            name="category"
+            value={complaint.category}
+            onChange={handleInputChange}
+            className="w-full p-2 border border-gray-300 rounded-lg"
+          >
+            <option value="">Select a category</option>
+            {complaintCategories.map((category, index) => (
+              <option key={index} value={category}>
+                {category}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* Choose Date and Time */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
           <div>
             <label className="block text-lg font-medium">Choose Date</label>
             <input

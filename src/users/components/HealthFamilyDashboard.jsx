@@ -14,6 +14,20 @@ function HealthFamilyDashboard() {
     999: "Max Super Speciality Hospital",
   };
 
+  const categories = [
+    "Hospital & Clinic Negligence",
+    "Unavailability of Medicines & Vaccines",
+    "Ambulance & Emergency Service Delays",
+    "Overcharging by Private Hospitals",
+    "Blood Bank & Organ Donation Issues",
+    "Health Insurance Claims & Fraud",
+    "Mental Health & Counselling Services",
+    "Malpractice & Misconduct by Doctors",
+    "Sanitation & Hygiene in Public Hospitals",
+    "Medical Test & Lab Report Delays",
+    "Lack of Facilities for Disabled Patients"
+  ];
+
   const sampleComplaints = {
     111: [
       { description: "Long waiting hours for OPD.", status: "Pending" },
@@ -32,6 +46,7 @@ function HealthFamilyDashboard() {
   const [complaint, setComplaint] = useState({
     hospitalId: "",
     hospitalName: "",
+    category: "",
     date: "",
     description: "",
     document: null,
@@ -39,6 +54,7 @@ function HealthFamilyDashboard() {
 
   const [filteredComplaints, setFilteredComplaints] = useState([]);
   const [successMessage, setSuccessMessage] = useState("");
+  const [selectedFileName, setSelectedFileName] = useState("");
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -54,6 +70,14 @@ function HealthFamilyDashboard() {
       }
     } else {
       setComplaint({ ...complaint, [name]: value });
+    }
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setComplaint({ ...complaint, document: file });
+      setSelectedFileName(file.name);
     }
   };
 
@@ -82,7 +106,6 @@ function HealthFamilyDashboard() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        {/* Success Message */}
         {successMessage && (
           <motion.div
             className="w-full text-center text-lg font-semibold text-green-700 bg-green-100 py-2 rounded-lg"
@@ -94,7 +117,6 @@ function HealthFamilyDashboard() {
           </motion.div>
         )}
 
-        {/* Complaint Form */}
         <h2 className="text-xl font-bold text-gray-800">File a New Complaint</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
@@ -120,7 +142,6 @@ function HealthFamilyDashboard() {
           </div>
         </div>
 
-        {/* Display Existing Complaints for Selected Hospital */}
         {filteredComplaints.length > 0 && (
           <div className="bg-gray-50 p-4 rounded-lg shadow-md w-full">
             <h3 className="text-lg font-bold mb-4">Existing Complaints for {complaint.hospitalName}</h3>
@@ -147,7 +168,23 @@ function HealthFamilyDashboard() {
           </div>
         )}
 
-        {/* Choose Date */}
+        <div className="mt-4">
+          <label className="block text-lg font-medium">Select Category</label>
+          <select
+            name="category"
+            value={complaint.category}
+            onChange={handleInputChange}
+            className="w-full p-2 border border-gray-300 rounded-lg"
+          >
+            <option value="">Select a category</option>
+            {categories.map((category, index) => (
+              <option key={index} value={category}>
+                {category}
+              </option>
+            ))}
+          </select>
+        </div>
+
         <div className="mt-4">
           <label className="block text-lg font-medium">Choose Date</label>
           <input
@@ -159,7 +196,6 @@ function HealthFamilyDashboard() {
           />
         </div>
 
-        {/* Complaint Description */}
         <div className="mt-6">
           <label className="block text-lg font-medium">Complaint Description</label>
           <textarea
@@ -172,7 +208,12 @@ function HealthFamilyDashboard() {
           />
         </div>
 
-        {/* Submit Complaint */}
+        {/* Upload Document */}
+        <div className="mt-4">
+          <label className="block text-lg font-medium">Upload Supporting Document</label>
+          <input type="file" className="w-full p-2 border border-gray-300 rounded-lg" />
+        </div>
+
         <button
           type="submit"
           onClick={handleSubmit}

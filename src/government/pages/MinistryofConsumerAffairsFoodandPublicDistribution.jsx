@@ -156,4 +156,3 @@ const MinistryofConsumerAffairsFoodandPublicDistribution = () => {
 };
 
 export default MinistryofConsumerAffairsFoodandPublicDistribution;
-
