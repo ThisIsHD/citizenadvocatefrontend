@@ -22,10 +22,8 @@ function GovtSign() {
         password
       });
       console.log(response.data);
-     
       navigate('/govt/login');
 
- 
       setDepartmentName('');
       setDepartmentId('');
       setCreateDepartmentPassword('');
@@ -38,8 +36,17 @@ function GovtSign() {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-96">
+    <div className="flex items-center justify-center h-screen bg-gray-100 relative">
+      {/* Gradient Overlay (Indian Flag Colors) */}
+      <div 
+        className="absolute inset-0 z-0"
+        style={{
+          background: 'linear-gradient(135deg, rgba(255, 153, 51, 0.6) 0%, rgba(255, 255, 255, 0.6) 50%, rgba(19, 136, 8, 0.6) 100%)',
+        }}
+      ></div>
+
+      {/* Sign Up Form */}
+      <div className="bg-white p-8 rounded-lg shadow-lg w-96 z-20 relative">
         <h2 className="text-2xl font-bold text-center mb-4">Government Sign Up</h2>
         <form onSubmit={handleSubmit}>
           <input

@@ -100,10 +100,10 @@ const MinistryofHealthandFamilyWelfare = () => {
                         />
 
                         <motion.div
-                            className="fixed top-1/2 left-1/2 bg-white shadow-lg rounded-lg w-[600px] h-[650px] flex flex-col p-4"
-                            initial={{ opacity: 0, scale: 0.8, y: "-50%", x: "-50%" }}
+                            className="fixed top-1/2 left-1/2 bg-white shadow-lg rounded-lg w-[800px] h-[750px] flex flex-col p-4"
+                            initial={{ opacity: 0, scale: 0.9, y: "-50%", x: "-50%" }}
                             animate={{ opacity: 1, scale: 1, y: "-50%", x: "-50%" }}
-                            exit={{ opacity: 0, scale: 0.8, y: "-50%", x: "-50%" }}
+                            exit={{ opacity: 0, scale: 0.9, y: "-50%", x: "-50%" }}
                         >
                             <div className="bg-blue-600 text-white px-4 py-3 flex justify-between items-center rounded-t-lg">
                                 <h3 className="font-semibold">Complaint Chat</h3>
@@ -125,11 +125,11 @@ const MinistryofHealthandFamilyWelfare = () => {
                                 ))}
                             </div>
 
-                            <div className="border-t border-gray-200 p-3 flex gap-2 items-center">
+                            <div className="border-t border-gray-200 p-3 flex items-center gap-2">
                                 <input
                                     type="text"
                                     placeholder="Type a response..."
-                                    className="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none"
+                                    className="flex-grow p-3 border border-gray-300 rounded-lg focus:outline-none"
                                     value={newMessage}
                                     onChange={(e) => setNewMessage(e.target.value)}
                                 />
@@ -155,3 +155,4 @@ const MinistryofHealthandFamilyWelfare = () => {
 };
 
 export default MinistryofHealthandFamilyWelfare;
+
