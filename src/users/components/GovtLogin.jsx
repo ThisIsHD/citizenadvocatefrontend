@@ -1,16 +1,36 @@
+import axios from 'axios';
 import { useState } from 'react';
 import { Navigate } from 'react-router';
+import { useNavigate } from 'react-router';
 
 function GovtLogin() {
-  const [deptId, setDeptId] = useState('');
-  const [deptPassword, setDeptPassword] = useState('');
+  const [departmentalid, setDepartmentId] = useState('');
+  const [password, setCreateDepartmentPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   const [redirectToSignUp, setRedirectToSignUp] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Implement authentication logic here
-    console.log('Department ID:', deptId);
-    console.log('Password:', deptPassword);
+    setLoading(true);
+    setError('');
+
+    try {
+      const response = await axios.post('http://localhost:3000/api/v1/ministry/auth/login', {
+        departmentalid,
+        password
+      });
+      console.log(response.data);
+      navigate(`/MinistryofRailways/${response.data.ministry.departmentalid}`);
+      setDepartmentId('');
+      setCreateDepartmentPassword('');
+    } catch (error) {
+      console.error(error);
+      setError(error.response?.data?.message || 'Error loging in');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleSignUpClick = () => {
@@ -20,7 +40,9 @@ function GovtLogin() {
   if (redirectToSignUp) {
     return <Navigate to="/govt/signup" />;
   }
-
+  if (loading) {
+    return <div>Loading...</div>
+  }
   return (
     <div className="flex items-center justify-center h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-lg w-96">
@@ -29,15 +51,15 @@ function GovtLogin() {
           <input
             type="text"
             placeholder="Department ID"
-            value={deptId}
-            onChange={(e) => setDeptId(e.target.value)}
+            value={departmentalid}
+            onChange={(e) => setDepartmentId(e.target.value)}
             className="w-full p-2 mb-4 border border-gray-300 rounded"
           />
           <input
             type="password"
             placeholder="Department Password"
-            value={deptPassword}
-            onChange={(e) => setDeptPassword(e.target.value)}
+            value={password}
+            onChange={(e) => setCreateDepartmentPassword(e.target.value)}
             className="w-full p-2 mb-4 border border-gray-300 rounded"
           />
           <button
@@ -56,6 +78,7 @@ function GovtLogin() {
             Sign up
           </span>
         </p>
+        <div>{error && <p className="text-red-500 mt-4">{error}</p>}</div>
       </div>
     </div>
   );

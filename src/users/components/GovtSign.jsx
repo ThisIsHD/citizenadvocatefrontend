@@ -1,17 +1,40 @@
-// src/pages/GovtSign.js
+import axios from 'axios';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function GovtSign() {
-  const [departmentName, setDepartmentName] = useState('');
-  const [departmentId, setDepartmentId] = useState('');
-  const [createDepartmentPassword, setCreateDepartmentPassword] = useState('');
+  const navigate = useNavigate();
+  const [departmentalname, setDepartmentName] = useState('');
+  const [departmentalid, setDepartmentId] = useState('');
+  const [password, setCreateDepartmentPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Implement signup logic here
-    console.log('Department Name:', departmentName);
-    console.log('Department ID:', departmentId);
-    console.log('Create Department Password:', createDepartmentPassword);
+    setLoading(true);
+    setError('');
+
+    try {
+      const response = await axios.post('http://localhost:3000/api/v1/ministry/auth/signup', {
+        departmentalname,
+        departmentalid,
+        password
+      });
+      console.log(response.data);
+     
+      navigate('/govt/login');
+
+ 
+      setDepartmentName('');
+      setDepartmentId('');
+      setCreateDepartmentPassword('');
+    } catch (error) {
+      console.error(error);
+      setError(error.response?.data?.message || 'Error signing up');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -22,30 +45,35 @@ function GovtSign() {
           <input
             type="text"
             placeholder="Department Name"
-            value={departmentName}
+            value={departmentalname}
             onChange={(e) => setDepartmentName(e.target.value)}
             className="w-full p-2 mb-4 border border-gray-300 rounded"
+            required
           />
           <input
             type="text"
             placeholder="Department ID"
-            value={departmentId}
+            value={departmentalid}
             onChange={(e) => setDepartmentId(e.target.value)}
             className="w-full p-2 mb-4 border border-gray-300 rounded"
+            required
           />
           <input
             type="password"
             placeholder="Create Department Password"
-            value={createDepartmentPassword}
+            value={password}
             onChange={(e) => setCreateDepartmentPassword(e.target.value)}
             className="w-full p-2 mb-4 border border-gray-300 rounded"
+            required
           />
           <button
             type="submit"
-            className="w-full py-2 bg-green-500 text-white rounded hover:bg-green-600"
+            className={`w-full py-2 text-white rounded ${loading ? 'bg-gray-400' : 'bg-green-500 hover:bg-green-600'}`}
+            disabled={loading}
           >
-            Sign Up
+            {loading ? 'Signing Up...' : 'Sign Up'}
           </button>
+          {error && <div className="text-red-600 mt-2 text-center">{error}</div>}
         </form>
       </div>
     </div>
